@@ -128,6 +128,9 @@ also links to BaseScan.
 published in Flynet's own quickstart. Other restaurant names are real New York restaurants used
 illustratively — they are not Blackbird partners, and no data shown about them is real.
 
+Built from scratch during the hackathon. [Claude Code](https://claude.com/claude-code) was used as a
+coding assistant, and the demo video's narration was generated with ElevenLabs.
+
 ---
 
 ## Run it
