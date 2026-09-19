@@ -1,0 +1,35 @@
+{
+  "name": "on-me",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Leave dinner for someone you'll never meet. Escrowed meals released by a Flynet check-in.",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "eslint",
+    "seed": "node scripts/seed.mjs",
+    "demo": "node scripts/demo.mjs",
+    "demo:record": "node scripts/record.mjs",
+    "wallet": "node --env-file-if-exists=.env scripts/wallet.mjs"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "playwright": "^1.50.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
+  },
+  "optionalDependencies": {
+    "@dynamic-labs-wallet/node-evm": "^1.0.0"
+  },
+  "packageManager": "pnpm@11.22.0"
+}

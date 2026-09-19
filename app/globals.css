@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #100b08;
+  --color-ink-2: #1a120d;
+  --color-cream: #f7ede1;
+  --color-muted: #a3907d;
+  --color-ember: #ff6a2b;
+  --color-gold: #ffc06a;
+  --font-display: Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
+}
+
+:root {
+  color-scheme: dark;
+  --ink: #100b08;
+  --cream: #f7ede1;
+  --muted: #a3907d;
+  --ember: #ff6a2b;
+  --gold: #ffc06a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* A single warm light source, low and to the left, like a room at dinner. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(80rem 50rem at 15% 105%, rgba(255, 106, 43, 0.16), transparent 60%),
+    radial-gradient(60rem 40rem at 85% -10%, rgba(255, 192, 106, 0.08), transparent 60%);
+}
+
+main { position: relative; z-index: 1; }
+
+.display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; }
+.muted { color: var(--muted); }
+
+.rule { height: 1px; background: linear-gradient(90deg, rgba(255,192,106,0.35), transparent); border: 0; }
+
+/* --- chrome ---------------------------------------------------------------- */
+.nav {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1.25rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(247, 237, 225, 0.08);
+}
+.nav a { color: var(--muted); text-decoration: none; font-size: 0.875rem; letter-spacing: 0.02em; }
+.nav a:hover, .nav a[data-active="true"] { color: var(--cream); }
+.brand { font-family: var(--font-display); font-size: 1.35rem; color: var(--cream); letter-spacing: -0.01em; }
+.brand em { color: var(--ember); font-style: normal; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 0.3rem 0.6rem; border-radius: 999px;
+  border: 1px solid rgba(247, 237, 225, 0.16); color: var(--muted);
+}
+.badge[data-live="true"] { border-color: rgba(120, 230, 160, 0.4); color: #8fe6b0; }
+.badge .dot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+
+/* --- buttons -------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.8rem 1.4rem; border-radius: 999px; border: 0; cursor: pointer;
+  font-size: 0.95rem; font-weight: 500; text-decoration: none;
+  background: var(--ember); color: #180d06;
+  transition: transform 140ms ease, box-shadow 140ms ease;
+  box-shadow: 0 0 0 0 rgba(255, 106, 43, 0.5);
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px -10px rgba(255, 106, 43, 0.7); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+.btn.ghost { background: transparent; color: var(--cream); border: 1px solid rgba(247, 237, 225, 0.2); }
+.btn.ghost:hover { border-color: var(--gold); }
+
+/* --- cards / notes -------------------------------------------------------- */
+.card {
+  background: linear-gradient(180deg, rgba(247, 237, 225, 0.045), rgba(247, 237, 225, 0.015));
+  border: 1px solid rgba(247, 237, 225, 0.09);
+  border-radius: 1rem;
+  padding: 1.25rem;
+}
+.note {
+  font-family: var(--font-display);
+  font-size: 1.08rem; line-height: 1.55; color: var(--cream);
+}
+.note::before { content: "\201C"; color: var(--gold); }
+.note::after { content: "\201D"; color: var(--gold); }
+
+.field { display: block; margin-bottom: 1rem; }
+.field span { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.45rem; }
+.field input, .field textarea, .field select {
+  width: 100%; padding: 0.75rem 0.9rem; border-radius: 0.6rem;
+  background: rgba(16, 11, 8, 0.6); color: var(--cream);
+  border: 1px solid rgba(247, 237, 225, 0.14); font: inherit;
+}
+.field textarea { min-height: 5.5rem; resize: vertical; font-family: var(--font-display); }
+.field input:focus, .field textarea:focus, .field select:focus { outline: 0; border-color: var(--ember); }
+
+.tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab {
+  padding: 0.55rem 1rem; border-radius: 999px; cursor: pointer; font-size: 0.85rem;
+  background: transparent; color: var(--muted); border: 1px solid rgba(247, 237, 225, 0.14);
+}
+.tab[data-on="true"] { background: rgba(255, 106, 43, 0.14); border-color: var(--ember); color: var(--cream); }
+
+.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.74rem; color: var(--muted); word-break: break-all; }
+
+/* --- map ------------------------------------------------------------------ */
+.pin { cursor: pointer; }
+.pin .halo {
+  animation: breathe 3.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.pin[data-claimed="true"] .halo { animation: none; opacity: 0.2; }
+@keyframes breathe {
+  0%, 100% { opacity: 0.34; transform: scale(1); }
+  50%      { opacity: 0.10; transform: scale(1.75); }
+}
+.pin-label {
+  font-size: 13px; fill: var(--cream); font-family: Georgia, ui-serif, serif;
+  paint-order: stroke; stroke: #100b08; stroke-width: 4px; stroke-linejoin: round;
+}
+
+/* --- the claim moment ----------------------------------------------------- */
+.reveal { animation: reveal 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes reveal { from { opacity: 0; transform: translateY(14px) scale(0.985); } to { opacity: 1; transform: none; } }
+.stagger > * { animation: reveal 700ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 60ms; }
+.stagger > *:nth-child(2) { animation-delay: 160ms; }
+.stagger > *:nth-child(3) { animation-delay: 260ms; }
+.stagger > *:nth-child(4) { animation-delay: 360ms; }
+.stagger > *:nth-child(5) { animation-delay: 460ms; }
+.stagger > *:nth-child(6) { animation-delay: 560ms; }
+
+.big { font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 0.98; }
+.counter { font-size: clamp(3rem, 9vw, 6.5rem); line-height: 1; color: var(--gold); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pin .halo, .reveal, .stagger > * { animation: none !important; }
+}
+
+/* The chair sits on the baseline of the wordmark, in the warm accent. */
+.brand { display: inline-flex; align-items: center; gap: 0.55rem; }
+.brand-mark { color: var(--gold); flex: none; }
